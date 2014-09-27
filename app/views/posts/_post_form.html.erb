@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+
+<%= form_for post do |f| %>
+
+  Title
+  <%= f.text_field :title %>
+
+  Body
+  <%= f.text_area :body %>
+
+  <%= f.submit title %>
+
+<% end %>
+
+<%= link_to "Destroy Post!!!!", post, :method => :delete %>
