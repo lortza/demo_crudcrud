@@ -11,11 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927010632) do
+ActiveRecord::Schema.define(version: 20140930224831) do
+
+  create_table "post_taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_taggings", ["tag_id", "post_id"], name: "index_post_taggings_on_tag_id_and_post_id", unique: true
 
   create_table "posts", force: true do |t|
     t.string   "title",      null: false
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

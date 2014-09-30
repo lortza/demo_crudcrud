@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(:title => params[:title], :body => params[:body])
+    @post = Post.new(whitelisted_post_params)
     if @post.save
       # Woohoo
       redirect_to @post
