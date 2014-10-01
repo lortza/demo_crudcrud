@@ -5,5 +5,6 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :post_taggings
   has_many :tags, :through => :post_taggings
+  has_many :comments, :dependent => :destroy
 
 end
