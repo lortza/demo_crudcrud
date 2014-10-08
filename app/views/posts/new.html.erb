@@ -1,2 +1,5 @@
-<%= render  :partial => "post_form", 
+<%%= render  :partial => "post_form", 
             :locals => {:post => @post, :title => "SNU Post"} %>
+
+<%= render  :partial => "nested_post_form",
+            :locals => {:post => @post} %>

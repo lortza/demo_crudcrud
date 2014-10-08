@@ -1,0 +1,27 @@
+<h1>
+  New/Update Post Form: Nested
+</h1>
+
+<%= form_for post do |post_fields| %>
+  
+  <%= post_fields.label :title %>
+  <%= post_fields.text_field :title %>
+
+  <br>
+
+  <%= post_fields.label :body %>
+  <%= post_fields.text_area :body %>
+
+  <br>
+
+  <%= post_fields.fields_for :tags do |tag_fields| %>
+    <h2> 
+      Tag Fields 
+    </h2>
+    <%= tag_fields.label :name %>
+    <%= tag_fields.text_field :name %>
+    <br>
+  <% end %>
+  
+  <%= post_fields.submit %>
+<% end %>

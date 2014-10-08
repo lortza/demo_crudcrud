@@ -46,7 +46,11 @@ class PostsController < ApplicationController
   private
 
   def whitelisted_post_params
-    params.require(:post).permit(:title, :body)
+    if params[:post].is_a?(Hash)
+      params.require(:post).permit(:title, :body)
+    else
+      {:title => params[:title], :body => params[:body]}
+    end
   end
 
 end

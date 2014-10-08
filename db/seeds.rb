@@ -18,7 +18,7 @@ Comment.destroy_all
 end
 
 50.times do |i|
-  Post.create!(:title => "foopost#{i+1}", :body => "The best foopost#{i+1}", :user_id => User.all.sample.id)
+  Post.create!(:title => "foopost#{i+1}", :body => "The best foopost#{i+1}", :author_id => User.all.sample.id)
 end
 
 100.times do |i|

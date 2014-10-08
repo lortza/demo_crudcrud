@@ -7,21 +7,37 @@
 
   Body
   <%= f.text_area :body %>
+  <%= text_field(:something,:title) %>
+<br>
 
+TAGS  <br>
+  <%%= f.collection_check_boxes(:tags, post.tags, :id, :name) %>
   <%= f.submit title %>
+<br>
+  Testtag
+<%=  check_box_tag(:tag, 1) %>
+<br>
+F.collection Select
+<%= f.collection_radio_buttons(:tags, post.tags, :id, :name) %>
+<br>
 
 <% end %>
 
 <%= link_to "Destroy Post!!!!", post, :method => :delete %>
 
-<%= form_tag posts_path do %>
-  <%= @post.errors[:title].class %>
-  <% unless @post.errors[:title].empty? %>
+<% form_tag_path = (post.persisted? ? post_path(post) : posts_path ) %>
+<% form_tag_method = (post.persisted? ? "PUT" : "POST") %>
+<%= form_tag form_tag_path, :method => form_tag_method do %>
+  <%= post.errors[:title].class %>
+  Title:
+  <% unless post.errors[:title].empty? %>
     <div class="error">
-      <%= "Post #{@post.errors[:title].first}" %>
+      <%= "Post #{post.errors[:title].first}" %>
     </div>
   <% end %>
-  <%= text_field_tag :title %>
-  <%= field_with_errors(@post,:title) %>
+  <%= text_field_tag :title %><br>
+  Title_with_errors:
+  <%= field_with_errors(post,:title) %>
+  <%= submit_tag %>
   ...
 <% end %>
