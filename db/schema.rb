@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008170928) do
+ActiveRecord::Schema.define(version: 20141009150847) do
 
   create_table "addresses", force: true do |t|
     t.string   "street_address"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20141008170928) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "friendings", force: true do |t|
+    t.integer  "friend_id",   null: false
+    t.integer  "friender_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendings", ["friend_id", "friender_id"], name: "index_friendings_on_friend_id_and_friender_id", unique: true
 
   create_table "post_taggings", force: true do |t|
     t.integer  "tag_id"
