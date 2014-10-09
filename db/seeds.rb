@@ -11,11 +11,19 @@ Tag.destroy_all
 PostTagging.destroy_all
 User.destroy_all
 Comment.destroy_all
+Address.destroy_all
+
 
 
 10.times do |i|
-  User.create!(:name => "foo#{i+1}", :email => "foo#{i+1}@bar.com")
+  u = User.create!(:name => "foo#{i+1}", :email => "foo#{i+1}@bar.com")
+  3.times { Address.create!(:user_id => u.id, 
+                            :street_address => "123 Fake Street",
+                            :city => "Fake City",
+                            :state => "Fake State",
+                            :zip => "Fake Zip" ) }
 end
+
 
 50.times do |i|
   Post.create!(:title => "foopost#{i+1}", :body => "The best foopost#{i+1}", :author_id => User.all.sample.id)

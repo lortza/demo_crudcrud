@@ -1,0 +1,8 @@
+<h1> user show for <%= @user.name %></h1>
+<%= link_to "Edit User", edit_user_path(@user) %>
+
+<h3>User Attributes:</h3>
+<%= @user.inspect %>
+
+<h3>The User's Addresses:</h3>
+<%= @user.addresses.inspect %>

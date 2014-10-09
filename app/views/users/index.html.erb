@@ -1,0 +1,5 @@
+<h1>users index</h1>
+
+<% @users.each do |u| %>
+  Edit <%= link_to u.name, edit_user_path(u) %>
+<% end %>

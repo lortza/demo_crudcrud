@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  Flash:
+  <%= flash[:error] %><br>
+  <%= flash[:success] %><br>
 
   <%= link_to "Home", root_url %>
+  <%= link_to "New User", new_user_path %>
+  <%= link_to "All Users", users_path %>
   <%= link_to "New Post", new_post_path %>
 
   <% if @post && @post.persisted? %>

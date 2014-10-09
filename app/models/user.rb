@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy, :foreign_key => :author_id
   has_many :comments, :foreign_key => :author_id
   has_many :comments_on_posts, :through => :posts, :source => :comments
-  # has_many :comments, :through => :posts
+  has_many :addresses#, :inverse_of => :user
+
+  accepts_nested_attributes_for :addresses, :reject_if => :all_blank
   
   before_create do |user|
     puts "about to create #{user.name}"
