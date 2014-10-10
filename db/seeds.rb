@@ -16,7 +16,7 @@ Photo.destroy_all
 
 
 
-10.times do |i|
+100.times do |i|
   u = User.create!(:name => "foo#{i+1}", :email => "foo#{i+1}@bar.com")
   3.times { Address.create!(:user_id => u.id, 
                             :street_address => "123 Fake Street",
@@ -31,7 +31,7 @@ end
   Photo.create(:title => "fooPhoto#{i+1}")
 end
 
-500.times do |i|
+5000.times do |i|
   commentable_type = ["Photo","Post"].sample
   commentable_parent_id = commentable_type.constantize.all.sample.id
   Comment.create!(:body => "The best foo-comment#{i+1}", 

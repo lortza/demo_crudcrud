@@ -31,6 +31,16 @@ group :development do
 end
 gem "binding_of_caller"
 
+gem 'rack-mini-profiler'
+
+group :development, :test do
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
+end
+
+# Notify us of our too-lazy queries
+gem "bullet", :group => "development"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
