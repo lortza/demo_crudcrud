@@ -48,7 +48,15 @@ class UsersController < ApplicationController
   # end
 
   def update
-    fail here
+    @user = User.find(params[:id])
+    # asdf
+    if @user.update(whitelisted_user_params)
+      params[:success] = "Updated your account!"
+      redirect_to @user
+    else
+      params.now[:error] = "Failed to update your account!"
+      render :edit
+    end
   end
 
   private
@@ -71,7 +79,9 @@ class UsersController < ApplicationController
                   :street_address,
                   :city,
                   :state,
-                  :zip ] } )
+                  :zip,
+                  :id,
+                  :_destroy] } )
   end
   def whitelisted_address_params
     params.
@@ -80,5 +90,5 @@ class UsersController < ApplicationController
                               :state,
                               :zip])
   end
-
+    #params.require(:user).permit( :name,:email,{ :addresses_attributes => [:street_address,:city,:state,:zip] } )
 end

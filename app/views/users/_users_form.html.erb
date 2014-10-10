@@ -16,32 +16,32 @@
   <br>
 
   <% if false %>
-    <h2>Addresses Fields using Iteration</h2>
-    <% user.addresses.each_with_index do |address, i| %>
-      <%= fields_for "addresses[]", address do |address_fields| %>
-        <h2> 
-          New/Edit ITERATED Address(es):
-        </h2>
-        <%= address_fields.label :street_address %>
-        <%= address_fields.text_field :street_address %>
-        <br>
-        <%= address_fields.label :city %>
-        <%= address_fields.text_field :city %>
-        <br>
-        <%= address_fields.label :state %>
-        <%= address_fields.text_field :state %>
-        <br>
-        <%= address_fields.label :zip %>
-        <%= address_fields.text_field :zip %>
-        <br>
+    <div class="fields_for_example">
+      <h2>Addresses Fields using Iteration</h2>
+      <% user.addresses.each_with_index do |address, i| %>
+        <%= user_fields.fields_for "addresses_attributes][#{i}", address do |address_fields| %>
+          <h3> 
+            Address:
+          </h3>
+          <%= address_fields.label :street_address %>
+          <%= address_fields.text_field :street_address %>
+          <br>
+          <%= address_fields.label :city %>
+          <%= address_fields.text_field :city %>
+          <br>
+          <%= address_fields.label :state %>
+          <%= address_fields.text_field :state %>
+          <br>
+          <%= address_fields.label :zip %>
+          <%= address_fields.text_field :zip %>
+          <br>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
 
-  <br><br>
-
   <% if true %>
-    <h2>User Addresses</h2>
+    <h2>User Addresses with Hardcoded Object</h2>
     <%= user_fields.fields_for :addresses do |address_fields| %>
       <h3> 
         <%= address_fields.object.persisted? ? "Edit" : "New" %> Address:
@@ -58,7 +58,48 @@
       <%= address_fields.label :zip %>
       <%= address_fields.text_field :zip %>
       <br>
+      <%= address_fields.label :_destroy, "Delete Address?" %>
+      <%= address_fields.check_box :_destroy %>
+      <br>
     <% end %>
+  <% end %>
+
+  <% if false %>
+    <h2>Independent Fields_for</h2>
+    <div class="fields_for_example">
+      <%= fields_for :address, Address.new do |address_fields| %>
+        <%= address_fields.label :street_address %>
+        <%= address_fields.text_field :street_address %>
+
+        <%= address_fields.label :city %>
+        <%= address_fields.text_field :city %>
+
+        <%= address_fields.label :state %>
+        <%= address_fields.text_field :state %>
+
+        <%= address_fields.label :zip %>
+        <%= address_fields.text_field :zip %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <h2>Nested Fields_for</h2>
+    <div class="fields_for_example">
+      <%= user_fields.fields_for :address, Address.new do |address_fields| %>
+        <%= address_fields.label :street_address %>
+        <%= address_fields.text_field :street_address %>
+
+        <%= address_fields.label :city %>
+        <%= address_fields.text_field :city %>
+
+        <%= address_fields.label :state %>
+        <%= address_fields.text_field :state %>
+
+        <%= address_fields.label :zip %>
+        <%= address_fields.text_field :zip %>
+      <% end %>
+    </div>
   <% end %>
   
   <%= user_fields.submit %>
