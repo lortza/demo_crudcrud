@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.includes(:posts)
   end
 
   def edit

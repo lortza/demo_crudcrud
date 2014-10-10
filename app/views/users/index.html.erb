@@ -1,5 +1,14 @@
 <h1>users index</h1>
 
 <% @users.each do |u| %>
-  Edit <%= link_to u.name, edit_user_path(u) %>
+  <%= link_to "Edit #{u.name}", edit_user_path(u) %>
+  <%= link_to "Show #{u.name}", user_path(u) %><br>
+<!--   <h3>N+1 Comments</h3>
+  <% u.posts.each do |p| %>
+    <p>
+      <%= link_to p.id, p %>
+    </p>
+  <% end %> -->
+  <!-- <h5>N+1 Post Counting</h5> -->
+  User has written <%= pluralize u.posts.size, "post" %>
 <% end %>

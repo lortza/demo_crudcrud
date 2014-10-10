@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008170928) do
+ActiveRecord::Schema.define(version: 20141010145705) do
 
   create_table "addresses", force: true do |t|
     t.string   "street_address"
@@ -24,9 +24,25 @@ ActiveRecord::Schema.define(version: 20141008170928) do
   end
 
   create_table "comments", force: true do |t|
-    t.integer  "post_id"
+    t.integer  "commentable_id"
     t.integer  "author_id"
     t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "commentable_type"
+  end
+
+  create_table "friendings", force: true do |t|
+    t.integer  "friend_id",   null: false
+    t.integer  "friender_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendings", ["friend_id", "friender_id"], name: "index_friendings_on_friend_id_and_friender_id", unique: true
+
+  create_table "photos", force: true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,6 +75,7 @@ ActiveRecord::Schema.define(version: 20141008170928) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "posts_cache", default: 0, null: false
   end
 
 end
