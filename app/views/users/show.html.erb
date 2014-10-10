@@ -6,3 +6,27 @@
 
 <h3>The User's Addresses:</h3>
 <%= @user.addresses.inspect %>
+
+<%# This is really hacky and bad %>
+<%# It's only because we don't have authentication now %>
+<%# so we'll just assume we're logged in as the first user %>
+<% current_user = User.first %>
+You are fake logged-in as <%= current_user.name %>!
+
+<%# Show the "friend" only if we haven't friended %>
+<%# this user yet.  Otherwise, show "unfriend" %>
+<%%# Note that `pluck(:id)` is the same as `select(:id).map(&:id)` %>
+<%%# ...but MUCH faster %>
+<% if current_user.friended_users.pluck(:id).include?(@user.id) %>
+  <%# We'll just pass the current_user_id directly into %>
+  <%# the params hash of our link... again, this isn't normal %>
+  <%= link_to "Unfriend #{@user.name}", 
+        friending_path(@user.id, :current_user_id => current_user.id),
+        :method => "DELETE" %>
+<% else %>
+  <%# We'll just pass the current_user_id directly into %>
+  <%# the params hash of our link... again, this isn't normal %>
+  <%= link_to "Friend #{@user.name}", 
+        friendings_path(:id => @user.id, :current_user_id => current_user.id), 
+        :method => "POST" %>
+<% end %>

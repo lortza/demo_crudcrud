@@ -12,6 +12,7 @@ PostTagging.destroy_all
 User.destroy_all
 Comment.destroy_all
 Address.destroy_all
+Photo.destroy_all
 
 
 
@@ -27,10 +28,16 @@ end
 
 50.times do |i|
   Post.create!(:title => "foopost#{i+1}", :body => "The best foopost#{i+1}", :author_id => User.all.sample.id)
+  Photo.create(:title => "fooPhoto#{i+1}")
 end
 
-100.times do |i|
-  Comment.create!(:body => "The best foo-comment#{i+1}", :author_id => User.all.sample.id, :post_id => Post.all.sample.id)
+500.times do |i|
+  commentable_type = ["Photo","Post"].sample
+  commentable_parent_id = commentable_type.constantize.all.sample.id
+  Comment.create!(:body => "The best foo-comment#{i+1}", 
+                  :author_id => User.all.sample.id, 
+                  :commentable_id => commentable_parent_id,
+                  :commentable_type => commentable_type)
 end
 
 
