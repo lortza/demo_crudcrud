@@ -1,5 +1,5 @@
 <h1>
-  New/Update Post Form: Nested
+  <%= post.persisted? ? "Update" : "New" %> Post Form
 </h1>
 
 <%= form_for post do |post_fields| %>
@@ -14,14 +14,27 @@
 
   <br>
 
-  <%= post_fields.fields_for :tags do |tag_fields| %>
-    <h2> 
-      Tag Fields 
-    </h2>
-    <%= tag_fields.label :name %>
-    <%= tag_fields.text_field :name %>
-    <br>
+  <% if false %>
+    <%= post_fields.fields_for :tags do |tag_fields| %>
+      <h2> 
+        Tag Fields 
+      </h2>
+      <%= tag_fields.label :name %>
+      <%= tag_fields.text_field :name %>
+      <br>
+    <% end %>
   <% end %>
+
+  <% if false %>
+    <h2>Select Tags to assign to this Post</h2>
+    <%= post_fields.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <% end %> 
+
+  <% if true %>
+    <h2>Select Tags to assign to this Post</h2>
+    <%= post_fields.collection_select :tag_ids, Tag.all, :id, :name, {}, :multiple => true %>
+  <% end %>
+
   
   <%= post_fields.submit %>
 <% end %>

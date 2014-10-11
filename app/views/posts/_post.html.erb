@@ -8,3 +8,10 @@
 <p>
   <%= post.body %>
 </p>
+
+<h3>tags</h3>
+<ul>
+  <% post.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
