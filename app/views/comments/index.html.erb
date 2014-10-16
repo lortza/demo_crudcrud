@@ -1,1 +1,9 @@
-<%= render @comments %>
+<h1>Comments index and form</h1>
+<p>
+  Showing off mass assignment of form fields
+</p>
+
+<%= form_tag update_comments_path, :method => "PATCH" do %>
+  <%= render @comments %>
+  <%= submit_tag %>
+<% end %>

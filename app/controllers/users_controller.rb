@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_filter :authenticate_user, :only => [:index]
 
   def new
     @user = User.new

@@ -15,6 +15,7 @@
   <%= link_to "New User", new_user_path %>
   <%= link_to "All Users", users_path %>
   <%= link_to "New Post", new_post_path %>
+  <%= link_to "All Coments", comments_path %>
 
   <% if @post && @post.persisted? %>
     <%= link_to "Show Post", @post %>
