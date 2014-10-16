@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, :only => [:new, :create, :index]
+  before_action :require_current_user, :only => [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -24,10 +26,11 @@ class UsersController < ApplicationController
     @user = User.new(whitelisted_user_params)
     # asdf
     if @user.save
-      params[:success] = "Created new user!"
+      sign_in(@user)
+      flash[:success] = "Created new user!"
       redirect_to @user
     else
-      params.now[:error] = "Failed to Create User!"
+      flash.now[:error] = "Failed to Create User!"
       render :new
     end
   end
@@ -75,6 +78,8 @@ class UsersController < ApplicationController
       require(:user).
       permit( :name,
               :email,
+              :password,
+              :password_confirmation,
               { :addresses_attributes => [
                   :street_address,
                   :city,

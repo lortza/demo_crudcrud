@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :comments, :defaults => { :commentable => 'Photo' }
   end
 
+  resources :sessions, :only => [:new, :create, :destroy]
+  get "login" => "sessions#new"
+  delete "logout" => "sessions#destroy"
+
   resources :tags
 
   resources :users do

@@ -16,6 +16,13 @@
   <%= link_to "All Users", users_path %>
   <%= link_to "New Post", new_post_path %>
 
+  <% if signed_in_user? %>
+    Welcome, <%=current_user.name %>!
+    <%= link_to "Logout", logout_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Login", login_path %>
+  <% end %>
+
   <% if @post && @post.persisted? %>
     <%= link_to "Show Post", @post %>
   <% end %>

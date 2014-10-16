@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :users_friended_by,    :through => :received_friendings,
                                   :source => :friend_initiator
 
+  has_secure_password
                                   
   accepts_nested_attributes_for :addresses, 
                                 :reject_if => :all_blank, 

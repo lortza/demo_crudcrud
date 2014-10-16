@@ -4,15 +4,23 @@
 
 <%= form_for user do |user_fields| %>
   
+  <% user.errors.full_messages.each do |error| %>
+    <div class="error">
+      <%= error %>
+    </div>
+  <% end %>
+
   <%= user_fields.label :name %>
   <%= user_fields.text_field :name %>
-  
   <br>
-
   <%= user_fields.label :email %>
   <%= user_fields.text_field :email %>
-
-
+  <br>
+  <%= user_fields.label :password %>
+  <%= user_fields.password_field :password %>
+  <br>
+  <%= user_fields.label :password_confirmation %>
+  <%= user_fields.password_field :password_confirmation %>
   <br>
 
   <% if false %>
