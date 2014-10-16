@@ -1,9 +1,25 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments = extract_commentable.comments
+    @comments = Comment.limit(10)
+    # @comments = extract_commentable.comments
   end
+
+  def update_comments
+    if Comment.update(update_comments_params.keys, update_comments_params.values)
+      flash[:success] = "Comments updated!"
+      redirect_to comments_path
+    else
+      flash.now[:failure] = "Boo error for comment update..."
+      render :index
+    end
+  end
+
   private
+  def update_comments_params
+    params.require(:comments) #  => { :body })
+  end
+
   def extract_commentable
     # the `request` object contains all the HTTP parameters
     # we were sent.  Among the many things you can dig into

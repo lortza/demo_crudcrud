@@ -41,5 +41,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  # Note: obsolete since we're using sessions now
+  def authenticate_user
+    # This filter will allow the user to pass if it returns true
+    # and the method here passes in the username and password
+    # the user provided in the login form
+    authenticate_or_request_with_http_basic('Message to User') do |username, password|
+      username == 'foo' && password == 'bar'
+    end
+  end
 end

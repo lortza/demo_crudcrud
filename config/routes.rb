@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     # resources :addresses
   end
 
+  resources :comments
+  put "update_comments" => 'comments#update_comments'
+  patch "update_comments" => 'comments#update_comments'
+
   resources :friendings, :only => [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
