@@ -25,7 +25,9 @@ class User < ActiveRecord::Base
 
   
   before_create do |user|
-    puts "about to create #{user.name}"
+    # puts "about to create #{user.name}"
+    generate_auth_token
+
   end
   after_create :just_created
 
@@ -53,9 +55,24 @@ class User < ActiveRecord::Base
      User.find_by_sql([sql,self.id])
   end
 
+  # unfamiliar syntax, but similar to `do_stuff if condition`
+  # We'll keep trying to generate the token as long as there's
+  # one identical to it somewhere in our users table
+  def generate_auth_token
+    begin
+      self[:auth_token] = SecureRandom.urlsafe_base64
+    end while User.exists?(:auth_token => self[:auth_token])
+  end
+
+  def regenerate_auth_token
+    self.auth_token = nil
+    generate_auth_token
+    save!
+  end
+
   protected
   def just_created
-    puts "just created a user"
+    # puts "just created a user"
   end
 
 

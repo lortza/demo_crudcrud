@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+puts "destroying old data"
+
 Post.destroy_all
 Tag.destroy_all
 PostTagging.destroy_all
