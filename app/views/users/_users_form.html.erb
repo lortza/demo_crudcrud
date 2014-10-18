@@ -54,6 +54,12 @@
       <h3> 
         <%= address_fields.object.persisted? ? "Edit" : "New" %> Address:
       </h3>
+      <div>
+        <%= address_fields.object.errors.full_messages %>
+      </div>
+      <%= user_fields.label :billing_address_id, "Set as Billing?" %>
+      <%= user_fields.radio_button :billing_address_id, address_fields.object.id, :checked => user_fields.object.billing_address_id == address_fields.object.id %>
+
       <%= address_fields.label :street_address %>
       <%= address_fields.text_field :street_address %>
       <br>

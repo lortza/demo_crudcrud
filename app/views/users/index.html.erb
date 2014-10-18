@@ -1,6 +1,7 @@
 <h1>users index</h1>
 
 <% @users.each do |u| %>
+  <%= link_to u, u %>
   <%= link_to "Edit #{u.name}", edit_user_path(u) %>
   <%= link_to "Show #{u.name}", user_path(u) %><br>
 <!--   <h3>N+1 Comments</h3>

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @user.addresses.build
   end
 
   def create
@@ -80,6 +81,7 @@ class UsersController < ApplicationController
               :email,
               :password,
               :password_confirmation,
+              :billing_address_id,
               { :addresses_attributes => [
                   :street_address,
                   :city,

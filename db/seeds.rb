@@ -25,12 +25,14 @@ puts "creating users"
                             :city => "Fake City",
                             :state => "Fake State",
                             :zip => "Fake Zip" ) }
+  u.billing_address = u.addresses.first
+  u.save!
 end
 puts "created users, creating posts and photos"
 
 50.times do |i|
   Post.create!(:title => "foopost#{i+1}", :body => "The best foopost#{i+1}", :author_id => User.all.sample.id)
-  Photo.create(:title => "fooPhoto#{i+1}")
+  Photo.create!(:title => "fooPhoto#{i+1}")
 end
 
 puts "created posts and photos, creating comments"

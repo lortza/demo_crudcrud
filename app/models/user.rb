@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :comments, :foreign_key => :author_id
   has_many :comments_on_posts, :through => :posts, :source => :comments
   has_many :addresses#, :inverse_of => :user
+  belongs_to :billing_address, :class_name => "Address"
 
   has_many :initiated_friendings, :foreign_key => :friender_id,
                                   :class_name => "Friending"
@@ -68,6 +69,10 @@ class User < ActiveRecord::Base
     self.auth_token = nil
     generate_auth_token
     save!
+  end
+
+  def to_s
+    name + " " + email
   end
 
   protected
