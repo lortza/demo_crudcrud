@@ -1,5 +1,16 @@
 class User < ActiveRecord::Base
+  has_attached_file :avatar, :styles => { :medium => "300x300", :thumb => "100x100" }
+  # You'll want to make sure you've whitelisted only acceptable
+  # content types to avoid attacks
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  attr_accessor :delete_avatar
+
+  # this is just the block format of a validation
+  # ...we could have created a method to do it as well
+  # We're using the `clear` method here, which is like
+  # the `delete_all` method used on associations
+  before_validation { avatar.clear(:thumb) if delete_avatar == '1' }
 
   has_many :posts, :dependent => :destroy, :foreign_key => :author_id
   has_many :comments, :foreign_key => :author_id

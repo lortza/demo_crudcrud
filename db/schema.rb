@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018194156) do
+ActiveRecord::Schema.define(version: 20141022150525) do
 
   create_table "addresses", force: true do |t|
     t.string   "street_address"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20141018194156) do
 
   create_table "photos", force: true do |t|
     t.string   "title"
+    t.binary   "data"
+    t.string   "filename"
+    t.string   "mime_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,10 +78,14 @@ ActiveRecord::Schema.define(version: 20141018194156) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "posts_cache",        default: 0, null: false
+    t.integer  "posts_cache",         default: 0, null: false
     t.string   "password_digest"
     t.string   "auth_token"
     t.integer  "billing_address_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

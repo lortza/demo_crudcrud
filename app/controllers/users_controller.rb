@@ -55,10 +55,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # asdf
     if @user.update(whitelisted_user_params)
-      params[:success] = "Updated your account!"
+      flash[:success] = "Updated your account!"
       redirect_to @user
     else
-      params.now[:error] = "Failed to update your account!"
+      flash.now[:error] = "Failed to update your account!"
       render :edit
     end
   end
@@ -82,6 +82,8 @@ class UsersController < ApplicationController
               :password,
               :password_confirmation,
               :billing_address_id,
+              :avatar,
+              :delete_avatar,
               { :addresses_attributes => [
                   :street_address,
                   :city,

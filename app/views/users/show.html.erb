@@ -4,19 +4,20 @@
 <h3>User Attributes:</h3>
 <%= @user.inspect %>
 
+<h3>Images</h3>
+<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url(:medium) %>
+<%= image_tag @user.avatar.url(:thumb) %>
+
 <h3>The User's Addresses:</h3>
 <%= @user.addresses.inspect %>
 
-<%# This is really hacky and bad %>
-<%# It's only because we don't have authentication now %>
-<%# so we'll just assume we're logged in as the first user %>
-<% current_user = User.first %>
-You are fake logged-in as <%= current_user.name %>!
-
+<h3>Friend stuff</h3>
 <%# Show the "friend" only if we haven't friended %>
 <%# this user yet.  Otherwise, show "unfriend" %>
-<%%# Note that `pluck(:id)` is the same as `select(:id).map(&:id)` %>
-<%%# ...but MUCH faster %>
+<%# Note that `pluck(:id)` is the same as `select(:id).map(&:id)` %>
+<%# ...but MUCH faster %>
+Note: obsolete... friend's the current user by the current user. lulz.
 <% if current_user.friended_users.pluck(:id).include?(@user.id) %>
   <%# We'll just pass the current_user_id directly into %>
   <%# the params hash of our link... again, this isn't normal %>
