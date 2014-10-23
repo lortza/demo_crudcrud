@@ -8,13 +8,13 @@
 
 puts "destroying old data"
 
-Post.destroy_all
-Tag.destroy_all
-PostTagging.destroy_all
-User.destroy_all
-Comment.destroy_all
-Address.destroy_all
-Photo.destroy_all
+Post.delete_all
+Tag.delete_all
+PostTagging.delete_all
+User.delete_all
+Comment.delete_all
+Address.delete_all
+Photo.delete_all
 
 
 puts "creating users"
