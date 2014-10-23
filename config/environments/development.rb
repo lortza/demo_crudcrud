@@ -52,4 +52,17 @@ Rails.application.configure do
     Bullet.add_footer = true
     # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
   end
+
+  # configure the paperclip gem
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      # NOTE: This is changed to use secrets.yml
+      # from the examples, which use ENV vars
+      :s3_host_name => "s3-us-west-1.amazonaws.com",
+      :bucket => Rails.application.secrets.s3_bucket_name,
+      :access_key_id => Rails.application.secrets.aws_access_key_id,
+      :secret_access_key => Rails.application.secrets.aws_secret_access_key
+    }
+  }
 end

@@ -47,6 +47,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Paperclip for file uploads
 gem 'paperclip'
 
+# S3 for paperclip uploads
+gem 'aws-sdk'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
