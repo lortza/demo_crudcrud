@@ -44,6 +44,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
     aws-sdk (1.56.0)
@@ -82,6 +83,11 @@ GEM
       unicode_utils (~> 1.4)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    delayed_job (4.0.4)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_active_record (4.0.2)
+      activerecord (>= 3.0, < 4.2)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     diffy (3.0.6)
     erubis (2.7.0)
@@ -100,6 +106,10 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -115,6 +125,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pg (0.17.1)
     polyglot (0.3.5)
     posix-spawn (0.3.9)
     pry (0.9.12.6)
@@ -210,10 +221,13 @@ DEPENDENCIES
   binding_of_caller
   bullet
   coffee-rails (~> 4.0.0)
+  delayed_job_active_record
   jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
   paperclip
+  pg
   pry-byebug
   rack-mini-profiler
   rails (= 4.1.4)

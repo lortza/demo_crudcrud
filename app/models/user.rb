@@ -39,9 +39,9 @@ class User < ActiveRecord::Base
   before_create do |user|
     # puts "about to create #{user.name}"
     generate_auth_token
-
   end
-  after_create :just_created
+
+  after_create :send_welcome_email
 
   def self.with_friends
     sql = "
@@ -86,9 +86,11 @@ class User < ActiveRecord::Base
     name + " " + email
   end
 
-  protected
-  def just_created
-    # puts "just created a user"
+  private
+  def send_welcome_email
+    # Note that the bang (!) method will blow
+    # up (roll back) the save transaction on failure
+    UserMailer.welcome(self).deliver!
   end
 
 
