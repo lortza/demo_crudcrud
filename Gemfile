@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Move secrets to heroku with a rake task
+gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -55,9 +58,6 @@ gem 'paperclip'
 
 # S3 for paperclip uploads
 gem 'aws-sdk'
-
-# Move secrets to heroku with a rake task
-gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
 
 # Use unicorn as the app server
 # gem 'unicorn'
