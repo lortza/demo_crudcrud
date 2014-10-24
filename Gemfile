@@ -30,6 +30,9 @@ gem 'rails_12factor'
 # that actually makes sense
 gem 'figaro'
 
+# Allow our workers to run as background processes
+gem 'daemons'
+
 # Move secrets to heroku with a rake task
 # NOTE: THIS GEM LOADS SECRETS AFTER ENVIRONMENTS
 # ARE LOADED SO THE CONFIG FILES WONT HAVE ACCESS
