@@ -31,13 +31,13 @@ gem 'spring',        group: :development
 group :development do
   # don't actually send emails
   gem "letter_opener"
-  gem "better_errors"
-  gem "binding_of_caller"
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'rack-mini-profiler'
 end
 
+  gem "better_errors"
+  gem "binding_of_caller"
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
