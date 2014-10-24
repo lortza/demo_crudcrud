@@ -81,4 +81,4 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
-Rails.application.secrets.secret_key_base = ENV[:secret_key_base]
+Rails.application.secrets.secret_key_base = ENV["secret_key_base"]
