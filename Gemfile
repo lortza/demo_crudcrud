@@ -56,6 +56,9 @@ gem 'paperclip'
 # S3 for paperclip uploads
 gem 'aws-sdk'
 
+# Move secrets to heroku with a rake task
+gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
