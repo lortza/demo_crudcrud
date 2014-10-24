@@ -53,11 +53,11 @@ gem "bullet", :group => "development"
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Paperclip for file uploads
-gem 'paperclip'
-
 # S3 for paperclip uploads
 gem 'aws-sdk'
+
+# Paperclip for file uploads
+gem 'paperclip'
 
 # Use unicorn as the app server
 # gem 'unicorn'
