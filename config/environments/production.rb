@@ -80,6 +80,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  putsputsputsputsputsputsputsputs
+  puts self.inspect
+  putsputsputsputsputsputsputsputsputs
   # config.secret_key_base = ENV["SECRET_KEY_BASE"]
 
   config.paperclip_defaults = {
