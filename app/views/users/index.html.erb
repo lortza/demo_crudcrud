@@ -1,8 +1,5 @@
 <h1>users index</h1>
 
-<%= ENV.inspect %>
-<h3> nope </h3>
-<%= Rails.application.secrets.inspect %>
 
 <% @users.each do |u| %>
   <%= link_to u, u %>
