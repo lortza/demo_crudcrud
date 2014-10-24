@@ -15,8 +15,13 @@
   
   <h3>ENV VARS</h3>
   <%= ENV.inspect%>
+  
   <h3>SECRETS</h3>
   <%= Rails.application.secrets.inspect %>
+
+  <h3>
+    Navigation
+  </h3>
 
   <%= link_to "Home", root_url %>
   <%= link_to "New User", new_user_path %>

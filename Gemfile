@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
 
-# Move secrets to heroku with a rake task
-# NOTE: THIS GEM LOADS SECRETS AFTER ENVIRONMENTS
-# ARE LOADED SO THE CONFIG FILES WONT HAVE ACCESS
-# TO THEM.  GODDAMNIT!
-gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,6 +25,16 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pg'
 gem 'delayed_job_active_record'
 gem 'rails_12factor'
+
+# manage environment variables and keys in a way
+# that actually makes sense
+gem 'figaro'
+
+# Move secrets to heroku with a rake task
+# NOTE: THIS GEM LOADS SECRETS AFTER ENVIRONMENTS
+# ARE LOADED SO THE CONFIG FILES WONT HAVE ACCESS
+# TO THEM.  GODDAMNIT!
+# gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
