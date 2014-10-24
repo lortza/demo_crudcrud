@@ -34,10 +34,10 @@ group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'rack-mini-profiler'
-end
-
   gem "better_errors"
   gem "binding_of_caller"
+end
+
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
