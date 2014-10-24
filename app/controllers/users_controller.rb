@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     # asdf
     if @user.save
       sign_in(@user)
+      @user.send_welcome_email
       flash[:success] = "Created new user!"
       redirect_to @user
     else
