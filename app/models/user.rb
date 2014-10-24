@@ -85,8 +85,9 @@ class User < ActiveRecord::Base
   end
 
   private
-  def send_welcome_email
-    UserMailer.welcome(self).deliver
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver
   end
 
 
