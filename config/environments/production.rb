@@ -81,7 +81,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   puts "\n\n\n\n\n\n\n"
-  puts @secrets
+  puts "ENV S3: #{ENV['S3_BUCKET_NAME']}!"
   puts "\n\n\n\n\n\n\n"
   # config.secret_key_base = ENV["SECRET_KEY_BASE"]
 
