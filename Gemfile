@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 # Move secrets to heroku with a rake task
+# NOTE: THIS GEM LOADS SECRETS AFTER ENVIRONMENTS
+# ARE LOADED SO THE CONFIG FILES WONT HAVE ACCESS
+# TO THEM.  GODDAMNIT!
 gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
 
 

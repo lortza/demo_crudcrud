@@ -12,3 +12,7 @@ end
 # ActiveSupport.on_load(:active_record) do
 #  self.include_root_in_json = true
 # end
+  puts "\n\n\n\n\n\n\n"
+  puts "ENV S3: #{ENV['S3_BUCKET_NAME']}!"
+  puts "Secrets S3: #{Rails.application.secrets.s3_bucket_name}!"
+  puts "\n\n\n\n\n\n\n"

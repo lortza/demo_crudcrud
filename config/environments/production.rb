@@ -80,9 +80,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  puts "\n\n\n\n\n\n\n"
-  puts "ENV S3: #{ENV['S3_BUCKET_NAME']}!"
-  puts "\n\n\n\n\n\n\n"
   # config.secret_key_base = ENV["SECRET_KEY_BASE"]
 
   config.paperclip_defaults = {
@@ -91,9 +88,9 @@ Rails.application.configure do
       # put your host name here if needed
       # see the reading below for more details
       :s3_host_name => "s3-us-west-1.amazonaws.com",
-      :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :bucket => Rails.application.secrets.s3_bucket_name,
+      :access_key_id => Rails.application.secrets.aws_access_key_id,
+      :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
 
