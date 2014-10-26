@@ -1,2 +1,2 @@
 worker:  bundle exec rake jobs:work
-web: bundle exec rails server webrick -p $PORT -e $RACK_ENV
+web: bundle exec rails s -p $PORT -e $RACK_ENV

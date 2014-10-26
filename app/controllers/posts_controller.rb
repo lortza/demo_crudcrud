@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   skip_before_filter :require_login, :only => [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.search(query_params[:query]).includes(:tags)
   end
 
   def new
@@ -52,6 +52,10 @@ class PostsController < ApplicationController
     else
       {:title => params[:title], :body => params[:body]}
     end
+  end
+
+  def query_params
+    params.permit(:query => [:title, :body])
   end
 
 end

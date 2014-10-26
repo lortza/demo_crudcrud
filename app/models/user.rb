@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
                                 :reject_if => :all_blank, 
                                 :allow_destroy => :true
 
+  validates :password, :length => { minimum: 3 }, :allow_nil => true
 
   
   before_create do |user|

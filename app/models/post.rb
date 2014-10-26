@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  include Searchable
 
   validates :title, :body, :length => {:maximum => 20}
 
@@ -8,5 +9,6 @@ class Post < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   # accepts_nested_attributes_for :tags
+
 
 end

@@ -1,3 +1,21 @@
 <h1>hello ,world!</h1>
 
+<h3> Post Search </h3>
+<%= form_tag posts_path, :method => 'get' do %>
+  <%= label_tag :query, "Find by title" %>
+  <%= text_field_tag :query %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h3> Advanced Post Search </h3>
+<%= form_tag posts_path, :method => 'get' do %>
+  <%= label_tag "query[title]", "Find by title" %>
+  <%= text_field_tag "query[title]" %>
+  <%= label_tag "query[body]", "Find within the body" %>
+  <%= text_field_tag "query[body]" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h3> Posts </h3>
+
 <%= render @posts %>
