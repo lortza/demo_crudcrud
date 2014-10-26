@@ -95,4 +95,6 @@ Rails.application.configure do
   }
 
   config.logger = Logger.new(STDOUT)
+
+  routes.default_url_options[:host] = 'http://my-silly-fake-app.com'
 end

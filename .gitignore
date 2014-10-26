@@ -19,3 +19,6 @@
 /config/application.yml
 
 .env
+
+# Ignore any precompiled assets
+/public/assets
