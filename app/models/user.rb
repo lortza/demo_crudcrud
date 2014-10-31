@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
                                 :allow_destroy => :true
 
   validates :password, :length => { minimum: 3 }, :allow_nil => true
+  validates :email, :uniqueness => true
 
   
   before_create do |user|

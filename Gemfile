@@ -56,6 +56,9 @@ end
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'pry-byebug'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'guard-rspec', :require => false
 end
 
 # Notify us of our too-lazy queries
