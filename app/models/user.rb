@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
     name + " " + email
   end
 
+  def post_count
+    posts.count
+  end
+
   private
   def self.send_welcome_email(id)
     user = User.find(id)
