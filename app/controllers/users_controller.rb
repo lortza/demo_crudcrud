@@ -53,13 +53,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # asdf
     if @user.update(whitelisted_user_params)
       flash[:success] = "Updated your account!"
       redirect_to @user
     else
       flash.now[:error] = "Failed to update your account!"
       render :edit
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    if user.destroy
+      flash[:success] = "User BLOWN UP successfully!"
+      redirect_to root_url
+    else
+      flash[:failure] = "Failed to destroy user"
+      redirect_to request.referer
     end
   end
 

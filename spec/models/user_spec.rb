@@ -21,7 +21,7 @@ describe User do
     it "doesn't allow identical email addresses" do
       # build a new user with the old email
       new_user = build(:user, :email => user.email)
-      expect(new_user.valid?).to eq(false)
+      expect(new_user).not_to be_valid
     end
   end
 
