@@ -2,7 +2,7 @@ require 'rails_helper'
 describe User do
   # remember you'll need to include the line
   # `config.include FactoryGirl::Syntax::Methods`
-  # in your `factory_girl.rb` config to avoid having
+  # in your `rails_helper.rb` config to avoid having
   # to call `build` using `FactoryGirl.build` here
   let(:user){ build(:user) }
 
