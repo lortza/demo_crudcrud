@@ -29,6 +29,8 @@ describe UsersController do
         # Here we're using `assigns` to verify that the
         # instance variable is being set
         # `assigns` returns that variable
+        # Note that `match_array` is helpful because 
+        #   the order of items doesn't matter.
         expect(assigns(:users)).to match_array [user,another_user]
       end
 
@@ -150,7 +152,7 @@ describe UsersController do
       end
 
       it "redirects to the root" do
-        post :destroy, :id => user.id
+        delete :destroy, :id => user.id
         expect(response).to redirect_to root_url
       end
       # ... and so on
