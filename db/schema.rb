@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023231932) do
+ActiveRecord::Schema.define(version: 20150725174604) do
 
   create_table "addresses", force: true do |t|
     t.string   "street_address"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20141023231932) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "posts_cache",         default: 0, null: false
+    t.integer  "posts_cache",         default: 0,     null: false
     t.string   "password_digest"
     t.string   "auth_token"
     t.integer  "billing_address_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20141023231932) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "likes_cookies",       default: false
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

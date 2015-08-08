@@ -1,5 +1,7 @@
 <h1><%= title %></h1>
 
+Authored by <%= post.author.name %>
+
 <%= form_for post do |f| %>
 
   Title
@@ -11,15 +13,49 @@
 <br>
 
 TAGS  <br>
-  <%%= f.collection_check_boxes(:tags, post.tags, :id, :name) %>
-  <%= f.submit title %>
-<br>
-  Testtag
-<%=  check_box_tag(:tag, 1) %>
-<br>
-F.collection Select
-<%= f.collection_radio_buttons(:tags, post.tags, :id, :name) %>
-<br>
+  <h4>The manual way</h4>
+  <% Tag.all.each do |tag| %>
+
+    <%= label_tag "post_tag_ids_#{tag.id}", tag.name  %>
+    <%= check_box_tag "post[tag_ids][]", 
+                      tag.id, 
+                      @post.tags.include?(tag), 
+                      id: "post_tag_ids_#{tag.id}" %>
+
+  <% end %>
+  <br>
+  <h4>The collection_check_boxes way:</h4>
+
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+
+  <h4>The FORM_TAG collection check boxes way</h4>
+  <%= collection_check_boxes(:post, :tag_ids, Tag.all, :id, :name) %>
+  <br>
+    Testtag
+  <%=  check_box_tag(:tag, 1) %>
+  <br>
+  <br>
+
+  <h3>Dropdown for Authors!</h3>
+  <%  author_options = options_for_select( 
+        User.all.map{ |u| [u.name, u.id] }, post.author_id
+      ) %>
+  <%#= select_tag( "post[author_id]", author_options ) %>
+
+  <%= f.select( :author_id, author_options, { include_blank: true }, class: "some_class", multiple: true) %>
+  <br>
+  <br>  <br>
+  <br>  <br>
+  <br>  <br>
+  <br>  <br>
+  <br>  <br>
+  <br>  <br>
+  <br>
+  <h3>Radio Buttons for Authors!</h3>
+  <%#= f.collection_radio_buttons(:author_id, User.limit(5), :id, :name) %>
+  <br>
+  <br>
+  <%= f.submit "Edit User" %>
 
 <% end %>
 

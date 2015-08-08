@@ -22,6 +22,11 @@
   <%= user_fields.label :password_confirmation %>
   <%= user_fields.password_field :password_confirmation %>
   <br>
+  <%= user_fields.label :likes_cookies %>
+  <%= user_fields.check_box :likes_cookies %>
+  <%= check_box_tag :likes_cookies %>
+  <br>
+  
 
   <%= user_fields.file_field :avatar %>
 
