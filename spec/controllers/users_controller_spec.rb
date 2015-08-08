@@ -7,6 +7,7 @@ describe UsersController do
     # Log in the easy way -- we have access
     # to the `session` and `cookies` hashes here!
     before :each do
+
       # If we did session-based auth, we'd use this:
       # session[:user_id] = user.id
 
@@ -46,7 +47,9 @@ describe UsersController do
 
     describe "POST #create" do
       it "redirects to the new user" do
+
         # Send in the attributes of a user (from our factory)
+        #   as if we'd submitted them in a `form_for` form
         post :create, :user => attributes_for(:user)
 
         # Now expect a redirect instead of a render
@@ -73,7 +76,11 @@ describe UsersController do
       end
 
       it "for another user denies access" do
-        get :edit, :id => user.id + 1
+
+        # make sure this user actually exists
+        another_user = create(:user)
+        get :edit, :id => another_user.id
+
         expect(response).to redirect_to root_url
       end
     end
@@ -98,7 +105,7 @@ describe UsersController do
 
         # let's make sure the ID parameter works
         it "finds the specified user" do
-          post :update, :id => user.id,
+          put :update, :id => user.id,
                         :user => attributes_for(:user, 
                                                 :name => updated_name)
           expect(assigns(:user)).to eq(user)
@@ -107,7 +114,7 @@ describe UsersController do
         it "redirects to the updated user" do
           # Send in the attributes of a user 
           # with a different name
-          post :update, :id => user.id,
+          put :update, :id => user.id,
                         :user => attributes_for(:user, 
                                                 :name => updated_name)
 
@@ -116,7 +123,7 @@ describe UsersController do
 
         # Note that this isn't being mocked out
         it "actually updates the user" do
-          post :update, :id => user.id,
+          put :update, :id => user.id,
                         :user => attributes_for(:user, 
                                                 :name => updated_name)
           # This won't work properly if you don't reload!!!
@@ -143,7 +150,7 @@ describe UsersController do
       end
 
       it "redirects to the root" do
-        delete :destroy, :id => user.id
+        post :destroy, :id => user.id
         expect(response).to redirect_to root_url
       end
       # ... and so on

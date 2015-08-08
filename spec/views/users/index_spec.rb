@@ -22,4 +22,5 @@ describe "users/index.html.erb" do
     # ... CSS style
     expect(rendered).to have_selector("a[href=\"#{user_path(user)}\"]", :text => "Show #{user.name}")
   end
+
 end
