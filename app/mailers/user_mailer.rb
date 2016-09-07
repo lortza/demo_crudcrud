@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UserMailer < ApplicationMailer
   default from: "welcomecommittee@crudcrud.com"
   after_action :explore_email
 
