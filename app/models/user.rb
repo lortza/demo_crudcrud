@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_attached_file :avatar, :styles => { :medium => "300x300", :thumb => "100x100" }
   # You'll want to make sure you've whitelisted only acceptable
   # content types to avoid attacks
@@ -29,15 +29,15 @@ class User < ActiveRecord::Base
                                   :source => :friend_initiator
 
   has_secure_password
-                                  
-  accepts_nested_attributes_for :addresses, 
-                                :reject_if => :all_blank, 
+
+  accepts_nested_attributes_for :addresses,
+                                :reject_if => :all_blank,
                                 :allow_destroy => :true
 
   validates :password, :length => { minimum: 3 }, :allow_nil => true
   validates :email, :uniqueness => true
 
-  
+
   before_create do |user|
     # puts "about to create #{user.name}"
     generate_auth_token
@@ -47,9 +47,9 @@ class User < ActiveRecord::Base
     sql = "
         SELECT *
         FROM users as initiating_frienders
-        JOIN friendings 
-          ON initiating_frienders.id = friendings.friender_id 
-        JOIN users as receiving_frienders 
+        JOIN friendings
+          ON initiating_frienders.id = friendings.friender_id
+        JOIN users as receiving_frienders
           ON friendings.friend_id = receiving_frienders.id"
     find_by_sql(sql)
   end

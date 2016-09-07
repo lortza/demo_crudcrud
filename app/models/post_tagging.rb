@@ -1,4 +1,4 @@
-class PostTagging < ActiveRecord::Base
+class PostTagging < ApplicationRecord
   belongs_to :post
   belongs_to :tag
 
