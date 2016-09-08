@@ -1,8 +1,8 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
 
   # Using VIRTUAL ATTRIBUTES to set our photo
-  # 
-  # This works because it will be passed in 
+  #
+  # This works because it will be passed in
   #   from our form under the `photo_data` key,
   #   which expects a `photo_data=` setter to
   #   be present in our model.

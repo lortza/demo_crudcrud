@@ -1,4 +1,4 @@
-class Friending < ActiveRecord::Base
+class Friending < ApplicationRecord
 
   belongs_to :friend_initiator, :foreign_key => :friender_id,
                                 :class_name => "User"

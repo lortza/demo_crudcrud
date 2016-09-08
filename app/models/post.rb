@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   include Searchable
 
   validates :title, :body, :length => {:maximum => 20}
