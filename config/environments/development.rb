@@ -9,15 +9,27 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  # Show full error reports.
+  config.consider_all_requests_local = true
+
+  # Enable/disable caching. By default caching is disabled.
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800'
+    }
+  else
+    config.action_controller.perform_caching = false
+
+    config.cache_store = :null_store
+  end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
-  # Use the letter_opener gem to deliver messages
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -30,44 +42,13 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Adds additional error checking when serving assets at runtime.
-  # Checks for improperly declared sprockets dependencies.
-  # Raises helpful error messages.
-  config.assets.raise_runtime_errors = true
-
-  routes.default_url_options[:host] = 'localhost:3000'
+  # Suppress logger output for asset requests.
+  config.assets.quiet = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Configure the Bullet Gem
-  config.after_initialize do
-    Bullet.enable = true
-    #Bullet.alert = true
-    Bullet.bullet_logger = true
-    Bullet.console = true
-    #Bullet.growl = true
-    # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
-    #                 :password => 'bullets_password_for_jabber',
-    #                 :receiver => 'your_account@jabber.org',
-    #                 :show_online_status => true }
-    Bullet.rails_logger = true
-    # Bullet.bugsnag = true
-    # Bullet.airbrake = true
-    Bullet.add_footer = true
-    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
-  end
-
-  # configure the paperclip gem
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      # NOTE: This is changed to use secrets.yml
-      # from the examples, which use ENV vars
-      :s3_host_name => "s3-us-west-1.amazonaws.com",
-      :bucket => Rails.application.secrets.s3_bucket_name,
-      :access_key_id => Rails.application.secrets.aws_access_key_id,
-      :secret_access_key => Rails.application.secrets.aws_secret_access_key
-    }
-  }
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
