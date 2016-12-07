@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :require_login, :only => [:index, :show]
+  skip_before_action :require_login, :only => [:index, :show]
 
   def index
     @posts = Post.search(query_params[:query]).includes(:tags)

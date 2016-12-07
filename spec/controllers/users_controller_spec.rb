@@ -23,7 +23,7 @@ describe UsersController do
 
         # Make the actual request using the specified
         # HTTP verb and action
-        get :index
+        process :index
 
         # A typical expectation
         # Here we're using `assigns` to verify that the
@@ -35,7 +35,7 @@ describe UsersController do
       end
 
       it "renders the :index template" do
-        get :index
+        process :index
 
         # We can check which view template is being rendered
         expect(response).to render_template :index
@@ -43,7 +43,7 @@ describe UsersController do
     end
 
     it "GET #new works as normal" do
-      get :new
+      process :new
       expect(response).to render_template :new
     end
 
@@ -52,7 +52,7 @@ describe UsersController do
 
         # Send in the attributes of a user (from our factory)
         #   as if we'd submitted them in a `form_for` form
-        post :create, :user => attributes_for(:user)
+        process :create, params: { :user => attributes_for(:user) }
 
         # Now expect a redirect instead of a render
         # AND we'll utilize our newly-assigned instance
@@ -66,14 +66,14 @@ describe UsersController do
       # (and simpler as well)
       it "actually creates the user" do
         expect{
-          post :create, user: attributes_for(:user)
+          process :create, params: { user: attributes_for(:user) }
         }.to change(User, :count).by(1)
       end
     end
 
     describe "GET #edit" do
       it "for this user works as normal" do
-        get :edit, :id => user.id
+        process :edit, params: { :id => user.id }
         expect(response).to render_template :edit
       end
 
@@ -81,7 +81,7 @@ describe UsersController do
 
         # make sure this user actually exists
         another_user = create(:user)
-        get :edit, :id => another_user.id
+        process :edit, params: { :id => another_user.id }
 
         expect(response).to redirect_to root_url
       end
@@ -107,27 +107,35 @@ describe UsersController do
 
         # let's make sure the ID parameter works
         it "finds the specified user" do
-          put :update, :id => user.id,
-                        :user => attributes_for(:user, 
-                                                :name => updated_name)
+          process :update, params: {
+            :id => user.id,
+            :user => attributes_for(
+              :user, 
+              :name => updated_name)
+          }
           expect(assigns(:user)).to eq(user)
         end
 
         it "redirects to the updated user" do
           # Send in the attributes of a user 
           # with a different name
-          put :update, :id => user.id,
-                        :user => attributes_for(:user, 
-                                                :name => updated_name)
-
+          process :update, params: {
+            :id => user.id,
+            :user => attributes_for(
+              :user,
+              :name => updated_name)
+          }
           expect(response).to redirect_to user_path(assigns(:user))
         end
 
         # Note that this isn't being mocked out
         it "actually updates the user" do
-          put :update, :id => user.id,
-                        :user => attributes_for(:user, 
-                                                :name => updated_name)
+          process :update, params: {
+            :id => user.id,
+            :user => attributes_for(
+              :user,
+              :name => updated_name)
+          }
           # This won't work properly if you don't reload!!!
           # The user in that case would be the same one
           # you set in the `let` method
@@ -147,12 +155,12 @@ describe UsersController do
 
       it "destroys the user" do
         expect{
-          delete :destroy, :id => user.id
+          process :destroy, params: { :id => user.id }
         }.to change(User, :count).by(-1)
       end
 
       it "redirects to the root" do
-        delete :destroy, :id => user.id
+        process :destroy, params: { :id => user.id }
         expect(response).to redirect_to root_url
       end
       # ... and so on
