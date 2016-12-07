@@ -25,3 +25,7 @@
 
 # Ignore any precompiled assets
 /public/assets
+
+
+# Ignore local paperclip files
+/public/system
