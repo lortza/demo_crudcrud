@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :tags, :through => :post_taggings
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  # accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :tags
 
 
 end

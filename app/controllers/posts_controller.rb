@@ -2,11 +2,18 @@ class PostsController < ApplicationController
   skip_before_action :require_login, :only => [:index, :show]
 
   def index
-    @posts = Post.search(query_params[:query]).includes(:tags)
+    query = query_params[:query]
+    if query
+      @posts = Post.search(title: query[:title], body: query[:body]).includes(:tags, :author)
+    else
+      @posts = Post.all
+    end
   end
 
   def new
-    @post = Post.new
+    # use posts.build instead of Post.new so that the
+    # new post is associated with the current user by default
+    @post = current_user.posts.build
   end
 
   def create

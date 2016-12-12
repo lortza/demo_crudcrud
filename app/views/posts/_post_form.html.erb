@@ -42,20 +42,15 @@ TAGS  <br>
       ) %>
   <%#= select_tag( "post[author_id]", author_options ) %>
 
-  <%= f.select( :author_id, author_options, { include_blank: true }, class: "some_class", multiple: true) %>
+  <%= f.select( :author_id, author_options, { include_blank: true }, class: "some_class") %>
   <br>
   <br>  <br>
-  <br>  <br>
-  <br>  <br>
-  <br>  <br>
-  <br>  <br>
-  <br>  <br>
   <br>
-  <h3>Radio Buttons for Authors!</h3>
+  <!-- <h3>Radio Buttons for Authors!</h3> -->
   <%#= f.collection_radio_buttons(:author_id, User.limit(5), :id, :name) %>
   <br>
   <br>
-  <%= f.submit "Edit User" %>
+  <%= f.submit post.persisted? ? "Update Post" : "Create New Post" %>
 
 <% end %>
 

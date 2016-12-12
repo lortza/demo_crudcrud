@@ -1,5 +1,7 @@
-<%= render  :partial => "nested_post_form", 
-            :locals => {:post => @post, :title => "DIET Post"} %>
-
 <%= render  :partial => "post_form", 
-            :locals => {:post => @post, :title => "DIET Post"} %>
+            :locals => {:post => @post, :title => "DIET Post (i.e. Edit Post)"} %>
+
+<hr>
+
+<%= render  :partial => "nested_post_form", 
+            :locals => {:post => @post, :title => "DIET Post (i.e. Edit Post)"} %>
