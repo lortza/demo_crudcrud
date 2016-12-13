@@ -22,15 +22,15 @@
   <h3>
     Navigation
   </h3>
-
+  <%= login_links %>
+  <br>
   <%= link_to "Home", root_url %>
   <%= link_to "New User", new_user_path %>
   <%= link_to "All Users", users_path %>
   <%= link_to "New Post", new_post_path %>
-  <%= link_to "All Coments", comments_path %>
+  <%= link_to "All Comments", comments_path %>
   <%= link_to "New Photo", new_photo_path %>
-
-  <%= login_links %>
+  <br>
 
   <% if @post && @post.persisted? %>
     <%= link_to "Show Post", @post %>

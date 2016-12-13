@@ -1,9 +1,9 @@
-<h1>hello ,world!</h1>
+<h1>hello, world! This is the posts index.</h1>
 
 <h3> Post Search </h3>
 <%= form_tag posts_path, :method => 'get' do %>
   <%= label_tag :query, "Find by title" %>
-  <%= text_field_tag :query %>
+  <%= text_field_tag "query[title]" %>
   <%= submit_tag "Search" %>
 <% end %>
 
