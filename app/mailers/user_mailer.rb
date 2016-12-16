@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   default from: "welcomecommittee@crudcrud.com"
-  after_action :explore_email
+  # after_action :explore_email
 
   def welcome(user)
     @user = user
