@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :posts, :dependent => :destroy, :foreign_key => :author_id
   has_many :comments, :foreign_key => :author_id
   has_many :comments_on_posts, :through => :posts, :source => :comments
+  # NOTE: the Rails 5 automatic presence validation has been 
+  # turned off in /config/initializers/new_framework_defaults.rb, 
+  # so inverse_of for user is unneccessary despite the nested form
   has_many :addresses#, :inverse_of => :user
   belongs_to :billing_address, :class_name => "Address"
 
