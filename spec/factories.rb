@@ -13,4 +13,13 @@ FactoryGirl.define do
     body "Foo Post Body"
     author                # association!
   end
+
+  factory :comment do
+    body "Foo Comment Body"
+    author                # association!
+
+    # to make comments for other types of commentables,
+    # use a nested factory
+    association :commentable, factory: :post  
+  end
 end
