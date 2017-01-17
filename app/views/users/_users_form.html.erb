@@ -24,6 +24,9 @@
   <br>
   <%= user_fields.label :likes_cookies %>
   <%= user_fields.check_box :likes_cookies %>
+
+  <!-- to nest this param, use a string instead -->
+  <!-- e.g. check_box_tag 'user[likes_cookies]' -->
   <%= check_box_tag :likes_cookies %>
   <br>
   

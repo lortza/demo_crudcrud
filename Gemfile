@@ -60,7 +60,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'guard-rspec', :require => false
-  gem 'rails-controller-testing'
+  # gem 'rails-controller-testing'
 end
 
 # Notify us of our too-lazy queries
