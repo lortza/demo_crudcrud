@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'json', github: 'flori/json', branch: 'v1.8'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -50,13 +50,15 @@ group :development do
   gem 'rack-mini-profiler'
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'capybara'
   gem 'launchy'
+  gem 'awesome_print', :require => 'ap'
 end
 
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'guard-rspec', :require => false

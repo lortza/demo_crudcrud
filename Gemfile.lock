@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/flori/json.git
+  revision: 7f4cfd853f2c919d854fb95548a19980feff17e8
+  branch: v1.8
+  specs:
+    json (1.8.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,6 +48,7 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
+    awesome_print (1.8.0)
     aws-sdk (2.6.33)
       aws-sdk-resources (= 2.6.33)
     aws-sdk-core (2.6.33)
@@ -126,7 +134,6 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -169,6 +176,8 @@ GEM
     pry-byebug (3.4.2)
       byebug (~> 9.0)
       pry (~> 0.10)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (2.0.4)
     rack (2.0.1)
     rack-mini-profiler (0.10.1)
@@ -273,6 +282,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   aws-sdk
   bcrypt (~> 3.1.7)
   better_errors
@@ -288,11 +298,13 @@ DEPENDENCIES
   hirb
   jbuilder (~> 2.5)
   jquery-rails
+  json!
   launchy
   letter_opener
   paperclip
   pg
   pry-byebug
+  pry-rails
   rack-mini-profiler
   rails (= 5.0.0.1)
   rails_12factor
@@ -305,4 +317,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.13.6
+   1.16.0
